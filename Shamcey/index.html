@@ -33,23 +33,23 @@
 <div class="loginpanel">
     <div class="loginpanelinner">
         <div class="logo animate0 bounceIn"><img src="images/logo.png" alt="" /></div>
-        <form id="login" action="dashboard.html" method="post">
+        <form id="login" action="">
             <div class="inputwrapper login-alert">
                 <div class="alert alert-error">Invalid username or password</div>
             </div>
             <div class="inputwrapper animate1 bounceIn">
-                <input type="text" name="username" id="username" placeholder="Enter any username" />
+                <input type="text" name="uname" id="username" placeholder="Enter any username" />
             </div>
             <div class="inputwrapper animate2 bounceIn">
                 <input type="password" name="password" id="password" placeholder="Enter any password" />
             </div>
             <div class="inputwrapper animate3 bounceIn">
-                <button name="submit">Sign In</button>
+                <button name="submit" onclick="getVal()" type="button" >Sign In</button>
             </div>
             <div class="inputwrapper animate4 bounceIn">
                 <label><input type="checkbox" class="remember" name="signin" /> Keep me sign in</label>
             </div>
-            
+
         </form>
     </div><!--loginpanelinner-->
 </div><!--loginpanel-->
@@ -58,5 +58,59 @@
     <p>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</p>
 </div>
 
+<script type="text/javascript">
+
+function getVal()
+{
+
+  un = document.getElementById("username").value;
+  pwd = document.getElementById("password").value;
+  //alert(un+pwd);
+  if(un == "" | pwd == "")
+  {
+    jQuery('.login-alert').fadeIn();
+  }
+  else
+  {
+    var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+          if(xhttp.responseText == 1)
+          {
+            window.location = "http://localhost:1234/dashboard.html";
+          }
+          else
+          {
+              jQuery('.login-alert').fadeIn();
+          }
+       }
+     };
+     xhttp.open("GET", "http://localhost:1234/admin/login/validate/"+un+"/"+pwd, true);
+     xhttp.send();
+
+  }
+
+}
+
+function validateForm()
+{
+  un = document.forms["myForm"]["username"].value;
+  pwd = document.forms["myForm"]["password"].value;
+  alert("ldkcndsc0"+un+pwd);
+
+  var xhttp = new XMLHttpRequest();
+   xhttp.onreadystatechange = function() {
+     if (this.readyState == 4 && this.status == 200) {
+        alert(xhttp.responseText);
+     }
+   };
+   xhttp.open("GET", "http://localhost:1234/admin/login/"+un+"/"+pwd, true);
+   xhttp.send();
+
+   return false;
+}
+
+</script>
 </body>
+
 </html>
