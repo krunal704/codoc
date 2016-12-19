@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+
+
+<link rel="stylesheet" href="css/style.default.css" type="text/css" />
+
+<!-- <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>-->
+<!--  <script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>-->
+ <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script> 
+<script type="text/javascript" src="js/modernizr.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+
+</head>
+
+<body class="loginpage">
+
+<div class="loginpanel">
+    <div class="loginpanelinner">
+        <div class="logo animate0 bounceIn"><img src="images/logo.png" alt="" /></div>
+            <div class="inputwrapper login-alert">
+                <div class="alert alert-error">Invalid username or password</div>
+            </div>
+            <div class="inputwrapper animate1 bounceIn">
+                <input type="text" name="email" id="email" placeholder="Enter any username" />
+            </div>
+            <div class="inputwrapper animate2 bounceIn">
+                <input type="password" name="passwd" id="passwd" placeholder="Enter any password" />
+            </div>
+            <div class="inputwrapper animate3 bounceIn">
+                <button id="sbtbtn"  onclick="validateLogin()">Sign In</button>
+            </div>
+                        <div class="md-layout" id="error" ng-bind="err" style="color:red;"></div>
+
+            <div class="inputwrapper animate4 bounceIn">
+                <label><input type="checkbox" class="remember" name="signin" /> Keep me sign in</label>
+            </div>
+        
+    </div><!--loginpanelinner-->
+</div><!--loginpanel-->
+
+<div class="loginfooter">
+    <p>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</p>
+</div>
+ <script type="text/javascript">
+      
+     
+       function validateLogin() {
+        alert("hi");
+            mail = document.getElementById("email").value;
+            passwd = document.getElementById("passwd").value;
+            alert(mail);
+          //   document.getElementById("error").innerHTML = "";
+             var xhttp = new XMLHttpRequest();
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                   alert(xhttp.responseText);
+                    var name = JSON.parse(xhttp.responseText);
+                    alert(name.firstName);  
+                    
+                    if(name.usertype == 1)
+                    {
+                        window.location.replace("/admin");
+                    }
+                    else
+                    {
+                      document.getElementById("error").innerHTML = "Invalid Username or Password";
+                    }
+                   
+                }   
+              };
+
+              xhttp.open("GET","http://localhost:8080/webuser/login/validate/"+mail+"/"+passwd,true);
+
+              xhttp.send();
+        }
+    </script>
+</body>
+</html>
