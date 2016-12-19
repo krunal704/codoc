@@ -22,26 +22,30 @@ var user = require('../models/user')
 // });
 
 
-
 router.get('/validate/:email/:pwd',function(req,res){
-	console.log(req.params.email);
-user.findOne({ "email": req.params.email,"password":req.params.pwd}, function(err, result) {
-  if (!err) {
-	          if(result == null)
-	          {
-	           console.log('invalid id and passs');
-	          }
-	          else
-	          {
-	                  console.log(result);
-	                  console.log(result);
-	                  res.send(result);
-	          } 
-        }
-        else
-        {
-              console.log('false');
-        }
- });
+	console.log("came here"+req.params.email+req.params.pwd);
+
+			user.findOne({ "email":req.params.email, "password":req.params.pwd } , function(err,result){
+				if(err)
+				{
+					res.send(err);
+				}
+				else {
+					if(result == null)
+					{
+						res.send("error");
+					}
+					else {
+							res.send(result);
+					}
+
+				}
+
+			})
+		 console.log("lkascn");
 });
+
+
+
+
 module.exports = router;

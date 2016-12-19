@@ -6,17 +6,18 @@ var mongoose = require('mongoose');
 
 //connecting to database
 
-mongoose.connect("mongodb://mistryakshar54:aks1611947@ds139448.mlab.com:39448/codoc");
+mongoose.connect("mongodb://jeetvirani:jeetvirani@ds139438.mlab.com:39438/codoc");
 
+
+console.log(mongoose.connection.readyState);
+mongoose.connection.once('connected', function() {
+	console.log("Connected to database")
+});
 //initialize express server
 var app = express();
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 app.use(logger('dev'));
-
-//start server
-app.listen(8080);
-console.log("server is running on port 8080");
 
 
 
@@ -39,8 +40,8 @@ app.use("/webuser/login",require("./routes/auth"));
 // })
 
 //start server
-app.listen(1234);
-console.log("server is running on port 1234");
+app.listen(8080);
+console.log("server is running on port 8080");
 
 
 
