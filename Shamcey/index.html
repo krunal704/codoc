@@ -23,18 +23,7 @@
 <script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 
-<script type="text/javascript">
-    jQuery(document).ready(function(){
-        jQuery('#login').submit(function(){
-            var u = jQuery('#username').val();
-            var p = jQuery('#password').val();
-            if(u == '' && p == '') {
-                jQuery('.login-alert').fadeIn();
-                return false;
-            }
-        });
-    });
-</script>
+
 </head>
 
 <body class="loginpage">
@@ -42,7 +31,7 @@
 <div class="loginpanel">
     <div class="loginpanelinner">
         <div class="logo animate0 bounceIn"><img src="images/logo.png" alt="" /></div>
-        <form id="login" action="">
+        <!-- <form id="login" action=""> -->
             <div class="inputwrapper login-alert">
                 <div class="alert alert-error">Invalid username or password</div>
             </div>
@@ -60,7 +49,7 @@
                 <label><input type="checkbox" class="remember" name="signin" /> Keep me sign in</label>
             </div>
 
-        </form>
+        <!-- </form> -->
     </div><!--loginpanelinner-->
 </div><!--loginpanel-->
 
@@ -86,11 +75,12 @@
 
                     if(name.usertype == 1)
                     {
-                        window.location.replace("/admin");
+                        window.location.replace("/dashboard.html");
                     }
                     else
                     {
-                      document.getElementById("error").innerHTML = "Invalid Username or Password";
+                      window.location.replace("/doc_dashboard.html");
+                      //document.getElementById("error").innerHTML = "Invalid Username or Password";
                     }
 
                 }
