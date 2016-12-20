@@ -24,7 +24,7 @@
    document.getElementById('rpid').innerHTML = data.rid;
    // document.getElementById('sidinput').innerHTML = data.fid;
    // alert(data.name);
-    alert(data.rid);
+    // alert(data.rid);
     findreport(data.rid);
 
 }
@@ -95,7 +95,7 @@
                             </div>
                             <div class="widgetcontent">
                                 <div class="profilethumb" id="imageload">
-                                    <img src="images/profilethumb.png" alt="" class="img-polaroid" />
+                                    <!-- <img src="images/profilethumb.png" alt="" class="img-polaroid" /> -->
                                 </div><!--profilethumb-->
                             </div>
                         </div>
@@ -164,15 +164,19 @@
     {
         // body...
         stext = rid;
-        alert(stext);
+        // alert(stext);
          var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-               alert(xhttp.responseText);
+               // alert(xhttp.responseText);
                  var jsonObj = JSON.parse(xhttp.responseText);
-                 alert(jsonObj.path);
-              //  head = '<img src='+jsonObj.path +'/></td>';
-              alert(jsonObj.name);
+                 // alert(jsonObj.path);
+                 head= '<img src='+'/uploads/' +jsonObj.path +' >';
+                
+            document.getElementById("imageload").innerHTML = head;
+
+               // head = '<img src='+jsonObj.path +'/></td>';
+              // alert(jsonObj.name);
                 document.getElementById("fname").value = jsonObj.name;
                 document.getElementById("age").value = jsonObj.age;
                 document.getElementById("gender").value = jsonObj.gender;

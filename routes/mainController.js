@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({ dest: 'Shamcey/uploads/' });
 var Image = require('../models/image');
 
 router.get('/', function(req, res) {
@@ -11,27 +11,39 @@ router.post('/add', upload.single('image'), function(req, res) {
   //  alert(req.file.url);
   console.log(req.body.url);
 	var image = new Image({
-		path: req.body.url,
+		path: req.file.filename,
 		name: req.body.fname,
 		gender: req.body.gender,
 		age: req.body.gender,
-		 notes: req.body.notes
-		// comments:null
+		 notes: req.body.notes,
+		 comments:null
 
 	});
 
-	image.save().then(function(response) {
+image.save(function(err,result){
+        if(!err){
+            console.log("added");
+          res.redirect('../../add_report.html');
 
-		var image = "<img src=" + req.body.url + " />";
-		var name = "<h1>" + req.body.name + "</h1>";
-		var html = "<div class='text-center'>" + image + name + "</div>";
+            }
+            else{
+                res.send(err);
+            }
+    });
 
-		res.send(html);
 
-	}).catch(function(err) {
-		console.log(err);
-		res.send("<h1>Something went wrong</h1>")
-	});
+	// image.save().then(function(response) {
+
+	// 	var image = "<img src=" +'/uploads/' +req.file.filename + " />";
+	// 	var name = "<h1>" + req.body.fname + "</h1>";
+	// 	var html = "<div class='text-center'>" + image + name + "</div>";
+
+	// 	res.send(html);
+
+	// }).catch(function(err) {
+	// 	console.log(err);
+	// 	res.send("<h1>Something went wrong</h1>")
+	// });
 
 });
 

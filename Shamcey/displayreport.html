@@ -49,7 +49,7 @@
         
         <ul class="breadcrumbs">
             <li><a href="dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
-            <li>Dashboard</li>
+            <li>View Report</li>
             <li class="right">
                     <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> Color Skins</a>
                     <ul class="dropdown-menu pull-right skin-color">
@@ -88,14 +88,14 @@
 <script type="text/javascript">
     function loadreport() {  
        jsonObj = "";
-       alert("jitu");
+       // alert("jitu");
          var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                alert(xhttp.responseText);
+                // alert(xhttp.responseText);
                  jsonObj = xhttp.responseText;
                  jsonObj=JSON.parse(xhttp.responseText);
-alert(jsonObj.length);
+// alert(jsonObj.length);
             bf ="";
             head = "<thead class='thead-inverse'>"+
                         "<tr>"+
@@ -105,12 +105,13 @@ alert(jsonObj.length);
                         "<th>Gender</th>"+
                         "<th>Notes</th>"+
                         "<th>Image</th>"+
-                        "<th>Comments</th>"+
+                     
                         "<th>Action</th>"+
                         "</tr>"+
                     "</thead>"+
                     "<tbody >";
               //      console.log(jsonObj.breakfast.food_key);
+              // alert(jsonObj[13].path);
             for(i=0;i<jsonObj.length;i++)
             {
 
@@ -119,8 +120,8 @@ alert(jsonObj.length);
                             '<td>'+jsonObj[i].age+'</td>'+
                             '<td>'+jsonObj[i].gender+'</td>'+
                             '<td>'+jsonObj[i].notes+'</td>'+
-                            '<td><img src='+jsonObj[i].path +'/></td>'+
-                             '<td>'+jsonObj[i].notes+'</td>'+
+                            '<td><img src='+'/uploads/' +jsonObj[i].path +' width="50px"></td>'+
+                             
                     '<td><button type="button" class="btn btn-danger" id="'+
                     jsonObj[i]._id+'" onclick="viewReport(this.id)">View</button></td></tr>';
                  
@@ -138,9 +139,7 @@ alert(jsonObj.length);
 
     function viewReport(id)
     {
-        alert(id);
         url = 'http://localhost:8080/viewReportDetails.html?rid='+id;
-//alert("hi");
         document.location.href = url;
 
     }

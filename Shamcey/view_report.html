@@ -90,14 +90,14 @@
 <script type="text/javascript">
     function loaduserreport() {  
        jsonObj = "";
-       alert("jitu");
+       // alert("jitu");
          var xhttp = new XMLHttpRequest();
           xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                alert(xhttp.responseText);
+                // alert(xhttp.responseText);
                  jsonObj = xhttp.responseText;
                  jsonObj=JSON.parse(xhttp.responseText);
-alert(jsonObj.length);
+// alert(jsonObj.length);
             bf ="";
             head = "<thead class='thead-inverse'>"+
                         "<tr>"+
@@ -120,7 +120,7 @@ alert(jsonObj.length);
                             '<td>'+jsonObj[i].age+'</td>'+
                             '<td>'+jsonObj[i].gender+'</td>'+
                             '<td>'+jsonObj[i].notes+'</td>'+
-                            '<td><img src='+jsonObj[i].path +'/></td>'+
+                            '<td><img src='+'/uploads/'+jsonObj[i].path +' width="50px"></td>'+
                              '<td>'+jsonObj[i].notes+'</td>';
                     //          +
                     // '<td><button type="button" class="btn btn-danger" id="'+

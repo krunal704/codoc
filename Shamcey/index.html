@@ -62,17 +62,17 @@
 
 
        function validateLogin() {
-        alert("hi");
+        // alert("hi");
             mail = document.getElementById("email").value;
             passwd = document.getElementById("passwd").value;
-            alert(mail);
+            // alert(mail);
           //   document.getElementById("error").innerHTML = "";
              var xhttp = new XMLHttpRequest();
               xhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                   alert(xhttp.responseText);
+                   // alert(xhttp.responseText);
                     var name = JSON.parse(xhttp.responseText);
-                    alert(name.firstName);
+                    // alert(name.firstName);
 
                     if(name.usertype == 1)
                     {
@@ -95,38 +95,6 @@
 </body>
 
 <script type="text/javascript">
-
-function getVal()
-{
-
-  un = document.getElementById("username").value;
-  pwd = document.getElementById("password").value;
-  //alert(un+pwd);
-  if(un == "" | pwd == "")
-  {
-    jQuery('.login-alert').fadeIn();
-  }
-  else
-  {
-    var xhttp = new XMLHttpRequest();
-     xhttp.onreadystatechange = function() {
-       if (this.readyState == 4 && this.status == 200) {
-          if(xhttp.responseText == 1)
-          {
-            window.location = "http://localhost:1234/dashboard.html";
-          }
-          else
-          {
-              jQuery('.login-alert').fadeIn();
-          }
-       }
-     };
-     xhttp.open("GET", "http://localhost:1234/admin/login/validate/"+un+"/"+pwd, true);
-     xhttp.send();
-
-  }
-
-}
 
 
 </script>
