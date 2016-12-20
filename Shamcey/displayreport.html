@@ -27,7 +27,7 @@
     
     <div class="header">
         <div class="logo">
-            <a href="dashboard.html"><img src="images/logo.png" alt="" /></a>
+            <a href="dashboard.html"><img src="images/codoc.png" alt="" width="150px" /></a>
         </div>
         <div class="headerinner">
         </div>
@@ -113,6 +113,7 @@ alert(jsonObj.length);
               //      console.log(jsonObj.breakfast.food_key);
             for(i=0;i<jsonObj.length;i++)
             {
+
                 bf += '<tr><td scope="row">'+(i+1)+'</td>'+
                             '<td>'+jsonObj[i].name+'</td>'+
                             '<td>'+jsonObj[i].age+'</td>'+
@@ -121,7 +122,8 @@ alert(jsonObj.length);
                             '<td><img src='+jsonObj[i].path +'/></td>'+
                              '<td>'+jsonObj[i].notes+'</td>'+
                     '<td><button type="button" class="btn btn-danger" id="'+
-                    jsonObj[i]._id+'" onclick="ldfd('+jsonObj[i]._id+')">Add Comment</button></td></tr>';
+                    jsonObj[i]._id+'" onclick="viewReport(this.id)">View</button></td></tr>';
+                 
             }                       
             
            
@@ -132,6 +134,15 @@ alert(jsonObj.length);
 
           xhttp.open("GET", "http://localhost:8080/report/display", true);
           xhttp.send();
+    }
+
+    function viewReport(id)
+    {
+        alert(id);
+        url = 'http://localhost:8080/viewReportDetails.html?rid='+id;
+//alert("hi");
+        document.location.href = url;
+
     }
 </script>
 </body>

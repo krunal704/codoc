@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Codoc Technology</title>
+<link rel="stylesheet" href="css/style.default.css" type="text/css" />
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-migrate-1.1.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript" src="js/modernizr.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript">
+    window.onload = function () {
+    var url = document.location.href,
+        params = url.split('?')[1].split('&'),
+        data = {}, tmp;
+    for (var i = 0, l = params.length; i < l; i++) {
+         tmp = params[i].split('=');
+         data[tmp[0]] = tmp[1];
+    }
+   document.getElementById('rpid').innerHTML = data.rid;
+   // document.getElementById('sidinput').innerHTML = data.fid;
+   // alert(data.name);
+    alert(data.rid);
+    findreport(data.rid);
+
+}
+</script>
+</head>
+
+
+<body>
+
+<div class="mainwrapper">
+    
+    <div class="header">
+        <div class="logo">
+            <a href="dashboard.html"><img src="images/codoc.png" alt="" width="150px" /></a>
+        </div>
+        <div class="headerinner">
+           
+        </div>
+    </div>
+    
+    <div class="leftpanel">
+        
+        <div class="leftmenu">        
+            <ul class="nav nav-tabs nav-stacked">
+                <li class="nav-header">Navigation</li>
+                <li><a href="doc_dashboard.html"><span class="iconfa-laptop"></span> Dashboard</a></li>
+                <li><a href="displayreport.html"><span class="iconfa-laptop"></span> View Report</a></li>
+                         </ul>
+        </div><!--leftmenu-->
+    </div>
+    <div class="rightpanel">
+        
+        <ul class="breadcrumbs">
+            <li><a href="dashboard.html"><i class="iconfa-home"></i></a> <span class="separator"></span></li>
+            <li><a href="editprofile.html">Other Pages</a> <span class="separator"></span></li>
+            <li>Report Details</li>
+            
+            <li class="right">
+                <a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-tint"></i> Color Skins</a>
+                <ul class="dropdown-menu pull-right skin-color">
+                    <li><a href="default">Default</a></li>
+                    <li><a href="navyblue">Navy Blue</a></li>
+                    <li><a href="palegreen">Pale Green</a></li>
+                    <li><a href="red">Red</a></li>
+                    <li><a href="green">Green</a></li>
+                    <li><a href="brown">Brown</a></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <div class="pageheader">
+            
+            <div class="pageicon"><span class="iconfa-laptop"></span></div>
+            <div class="pagetitle">
+                <h1>Report Details</h1>
+            </div>
+        </div><!--pageheader-->
+        
+        <div class="maincontent">
+            <div class="maincontentinner">
+                <div class="row-fluid">
+                    	<div class="span4 profile-left">
+                        
+                        <div class="widgetbox profile-photo">
+                            <div class="headtitle">
+                               
+                                <h4 class="widgettitle">Patient Image</h4>
+                            </div>
+                            <div class="widgetcontent">
+                                <div class="profilethumb" id="imageload">
+                                    <img src="images/profilethumb.png" alt="" class="img-polaroid" />
+                                </div><!--profilethumb-->
+                            </div>
+                        </div>
+                            
+                            
+                        
+                            
+                        </div><!--span4-->
+                        <div class="span8">
+                            <form  class="editprofileform" method="post" action="/report/updatereport">
+                                
+                                <div class="widgetbox login-information">
+                                    <h4 class="widgettitle">Patient Information</h4>
+<!--                                  <label name="rpid" id="rpid" ></label>
+ -->                                <input type="hidden" name="rpid" id="rpid"/>
+                                    <div class="widgetcontent">
+                                        <p>
+                                            <label>First Name:</label>
+                                          <input type="text" id="fname" name="fname" readonly>
+
+                                        </p>
+                                        <p>
+                                            <label>Age:</label>
+                                    <input type="text" id="age" name="age" readonly>
+
+                                   </p>
+                                         <p>
+                                            <label>Gender:</label>
+                                                          <input id="gender" name="gender" readonly>
+                                         </p>
+                                        <p>
+                                            <label>Comments:</label>
+                                            <input type="text" name="comment" cols="50" >
+                                        </p>
+                                       
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <p>
+                                	<button type="submit" class="btn btn-primary" >Add Comment</button> &nbsp;
+                                </p>
+                                
+                            </form>
+                        </div><!--span8-->
+                    </div><!--row-fluid-->
+                    
+                    <div class="footer">
+                        <div class="footer-left">
+                            <span>&copy; 2013. Shamcey Admin Template. All Rights Reserved.</span>
+                        </div>
+                        <div class="footer-right">
+                            <span>Designed by: <a href="http://themepixels.com/">ThemePixels</a></span>
+                        </div>
+                    </div><!--footer-->
+                
+            </div><!--maincontentinner-->
+        </div><!--maincontent-->
+        
+    </div><!--rightpanel-->
+    
+</div><!--mainwrapper-->
+ <script type="text/javascript">
+    function findreport(rid) 
+    {
+        // body...
+        stext = rid;
+        alert(stext);
+         var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+               alert(xhttp.responseText);
+                 var jsonObj = JSON.parse(xhttp.responseText);
+                 alert(jsonObj.path);
+              //  head = '<img src='+jsonObj.path +'/></td>';
+              alert(jsonObj.name);
+                document.getElementById("fname").value = jsonObj.name;
+                document.getElementById("age").value = jsonObj.age;
+                document.getElementById("gender").value = jsonObj.gender;
+                
+            }
+          };
+          xhttp.open("GET", "http://localhost:8080/report/searchreport/"+stext, true);
+          xhttp.send();
+    }
+
+   
+
+
+    </script>
+</body>
+</html>
